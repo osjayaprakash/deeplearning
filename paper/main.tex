@@ -14,6 +14,8 @@
 \usetikzlibrary{positioning, shapes.geometric, arrows.meta}
 \usepackage{natbib}
 \bibliographystyle{unsrtnat}
+\usepackage{hyperref}
+\usepackage{float}
 
 \title{Automated LaTeX Code Generation from Handwritten Mathematical Expressions \\
 Category: Computer Vision}
@@ -71,36 +73,21 @@ Converting handwritten mathematical expressions into digital formats is time con
 
 We will use the datasets from two main repositories: \texttt{Im2latex-100k} (\cite{kanervisto_2016_56198}) and \texttt{Im2latex-230k} (\cite{gervais2024mathwritingdatasethandwrittenmathematical}). These datasets consist of images of mathematical formulas paired with their corresponding LaTeX code (two features). The Latex code is variable length.
 
-\subsection*{Im2latex-100k}
-The \texttt{Im2latex-100k} (\cite{kanervisto_2016_56198}) dataset, available at \href{https://zenodo.org/records/11230382}{Zenodo}, contains 100,000 image-formula pairs. Each image is in PNG format with a fixed size, and the formulas are extracted from ArXiv papers. This dataset is a cleaned-up version from the Cornell KDD competition (KDD Cup 2003).
-
-\begin{itemize}
-    \item Number of Examples: 100,000
-    \item Data Format: \texttt{<image file name> <formula id>}
-    \item Source: ArXiv mathematical papers
-\end{itemize}
-
-\subsection*{Im2latex-230k}
-The \texttt{Im2latex-230k} (\cite{gervais2024mathwritingdatasethandwrittenmathematical}) 
- dataset, also known as \texttt{Im2latexv2}, contains 230,000 samples. It includes both OpenAI-generated and handwritten examples, further enhancing the diversity of the data. This dataset is available at \href{https://im2markup.yuntiandeng.com/data/}{Im2markup}.
-
-\begin{itemize}
-    \item Number of Examples: 230,000
-    \item Data Format: \texttt{<image file name> <formula id>}
-    \item Source: ArXiv papers, OpenAI-generated, and handwritten samples
-\end{itemize}
-
-% Describe your dataset: how many training/validation/test examples do you have? Is there
-% any preprocessing you did? What about normalization or data augmentation? What is the
-% resolution of your images? How is your time-series data discretized? Include a citation on
-% where you obtained your dataset from. Depending on available space, show some examples
-% from your dataset. You should also talk about the features you used. If you extracted
-% features using Fourier transforms, word2vec, PCA,
-% ICA, etc. make sure to talk about it. Try to include examples of your data in the report
-% (e.g. include an image, show a waveform, etc.).
+The \texttt{Im2latex-100k} (\cite{kanervisto_2016_56198}) dataset, available at \href{https://zenodo.org/records/11230382}{Zenodo}, contains 100,000 image-formula pairs. Each image is in PNG format with a fixed size, and the formulas are extracted from ArXiv papers. This dataset is a cleaned-up version from the Cornell KDD competition (KDD Cup 2003). The \texttt{Im2latex-230k} (\cite{gervais2024mathwritingdatasethandwrittenmathematical}) 
+ dataset, also known as \texttt{Im2latexv2}, contains 230,000 samples. It includes both OpenAI-generated and handwritten examples, further enhancing the diversity of the data. This dataset is available at \href{https://im2markup.yuntiandeng.com/data/}{Im2markup}. The training data format is \texttt{<image file name> <formula id>}.
+ 
+ The dataset disk size is 849 MB. The images are gray scales with 50x200 pixels. The numbers of symbols (\autoref{fig:formula_length}) in the latex formulas vary from range varies from 1 to 150 symbols. Voabulary contains 540 symbols, refer \autoref{fig:vocab_freq_1} and \autoref{fig:vocab_freq_2} for the list of popular and least occurring symbols with their frequency.
+ 
+\begin{figure}
+    \centering
+    \includegraphics[scale=0.4]{fig_latex_formula_length.png}
+    \caption{Formulas breakdown by length}
+    \label{fig:formula_length}
+\end{figure}
 
 
-\section{ Methods }
+\section{Experiment}
+
 In this project, we will use a Convolutional Neural Network (CNN) (\cite{OSheaN15}) combined with sequence-to-sequence (Seq2Seq) (\cite{6795963}) model to convert handwritten mathematical expressions into LaTeX code. The input to our algorithm is an image  \( I \), and the output is the corresponding LaTeX code, denoted as a sequence of tokens \( T = \{t_1, t_2, \dots, t_n\} \).
 
 The Seq2Seq model, which consists of an encoder (the CNN) and a decoder (RNN, or LSTM), is trained for generate the LaTeX code token by token. At each time step \( t \), the decoder predicts the next token \( t_t \) given the previous tokens and the context vector \( c_t \). The probability distribution for the next token is computed as:
@@ -131,6 +118,20 @@ where \( h_t \) is the hidden state of the decoder at time step \( t \), and \( 
 
 We'll use the cross-entropy loss function to optimize the model during training. Also, we plan to explore different attention mechanisms and extracting salient features as we iterate on the experimentation.
 
+\subsection{Experiment Seup}
+We use the single AWS P2 instance (tesla 80 GPU) for training. The training time varies between  
+
+\subsection{CNN encoder and GRU/LSTM}
+We use the LSTM instead of the GRU to compare the LSTM's performance improvement if any.
+
+\subsection{LSTM with funetuning with pretrained Resnet50}
+We use the LSTM instead of the GRU to compare the LSTM's performance improvement if any.
+
+\subsection{Attention Model}
+  [WIP] We're in the middle of using attention mechanism to experiment with attention mechanism for the model to learn complex dependencies.
+  
+\subsection{Beam Search Instead of Greedy Decoding}
+  [WIP] We're in the middle of using attention mechanism to experiment with attention mechanism for the model to learn complex dependencies. 
 
 \section{Experiments and Evaluation}
 
@@ -144,28 +145,20 @@ We will use the following metrics to evaluate the performance of the model for t
 
 The experimentation will involve choosing different CNN layers (striding, pooling), learning rate, mini batch size. 
 
-% \section{Conclusion/Future Work}
-% Empowered by a large existing dataset with thousands of examples, as well as ample existing research and methodologies with similar problems, we will be able to effectively develop a model to accurately convert notes to LaTeX, while also adjusting existing architectures to experiment and ultimately determine an optimal architecture. With more time, future steps might involve processing entire documents into LaTeX rather than single lines at a time and outputting an entire file of LaTeX instead of a single line. It would also be useful to develop a larger and more variable dataset that can improve performance with messier handwriting, photo quality, distance, etc.
-% Summarize your report and reiterate key points. Which algorithms were the highestperforming?
-% Why do you think that some algorithms worked better than others? For
-% future work, if you had more time, more team members, or more computational resources,
-% what would you explore?
+\section{Remaining work for Final Project}
 
-% \section{Contributions}
-% The contributions section is not included in the 5 page limit. This section should describe
-% what each team member worked on and contributed to the project.
+\textbf{Re-weighted mis-predicted training example}: We're aiming to inspect the accuracy losses and ensure that mis-predicted examples are correctly identified with increased weighting. 
 
-% \section*{References}
-% This section should include citations for: (1) Any papers mentioned in the related work
-% section. (2) Papers describing algorithms that you used which were not covered in class.
-% (3) Code or libraries you downloaded and used. This includes libraries such as scikit-learn, Tensorflow, Pytorch, Keras etc. Acceptable formats include: MLA, APA, IEEE. If you
-% do not use one of these formats, each reference entry must include the following (preferably
-% in this order): author(s), title, conference/journal, publisher, year. If you are using TeX,
-% you can use any bibliography format which includes the items mentioned above. We are excluding
-% the references section from the page limit to encourage students to perform a thorough
-% literature review/related work section without being space-penalized if they include more
-% references. Any choice of citation style is acceptable
-% as long as you are consistent. 
+\textbf{Image based evaluation metrics}: We have accuracy based metrics implemented, and edit distance based and BLEU Score based metrics implemented. We're planning to implement \textbf{Image Based} evaluation metrics as two different latex formulas can mean the same formula.
+
+\section{Contributions}
+
+\textbf{Jayaprakash Sundararaj}: Initial report, researching the dataset and existing methods. Implementing the full CNN and LSTM as a baseline. Extending to pre-trained ResNet50 model with finetuning.
+
+\textbf{Akhil}: Ideation, Setting AWS/GPU setup, Extending to full CNN and GRU as a baseline, Extending to attention/transformer architecture (work in progress).
+
+\textbf{Ben}: TODO
+
 
 \medskip
 
@@ -173,11 +166,21 @@ The experimentation will involve choosing different CNN layers (striding, poolin
 \bibliography{sample}
 \small
 
-% [3] \url{http://ivc.univ-nantes.fr/CROHME/datasets.php}
 
-% [4] \url{http://www.isical.ac.in/~crohme/CROHME\_tasks2.html}
+\section{Appendix}
 
-% [1] Wang, H., \& Shan, G. (2020). Recognizing handwritten mathematical expressions as LaTex sequences using a multiscale robust neural network. arXiv preprint arXiv:2003.00817.
+\begin{figure}[H]
+    \centering
+    \includegraphics[scale=0.4]{fig_vocabs_frequency_1.png}
+    \caption{Dataset: Most popular symbols and frequencies.}
+    \label{fig:vocab_freq_1}
+\end{figure}
 
+\begin{figure}[H]
+    \centering
+    \includegraphics[scale=0.4]{fig_vocabs_frequency_2.png}
+    \caption{Dataset: Least popular symbols and frequencies.}
+    \label{fig:vocab_freq_2}
+\end{figure}
 
 \end{document}
