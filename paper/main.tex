@@ -16,6 +16,12 @@
 \bibliographystyle{unsrtnat}
 \usepackage{hyperref}
 \usepackage{float}
+\usepackage{xcolor}
+\usepackage{tcolorbox}
+\usepackage{xcolor,soul}
+\sethlcolor{cyan!30} % Sets light blue as highlight color
+
+\newcommand{\hlblue}[1]{\hl{#1}}
 
 \title{Automated LaTeX Code Generation from Handwritten Mathematical Expressions \\
 Category: Computer Vision}
@@ -119,19 +125,40 @@ where \( h_t \) is the hidden state of the decoder at time step \( t \), and \( 
 We'll use the cross-entropy loss function to optimize the model during training. Also, we plan to explore different attention mechanisms and extracting salient features as we iterate on the experimentation.
 
 \subsection{Experiment Seup}
-We use the single AWS P2 instance (tesla 80 GPU) for training. The training time varies between  
+We use the single AWS P2 instance (tesla 80 GPU) for training. The training time varies between  1 hr 30 mins and 2 hrs. We use the `sparse categorical loss` with `adam` optimizer for 20 epoches. These hyperparameter are not modified between different configurations to observe the differences in outcome.
 
 \subsection{CNN encoder and GRU/LSTM}
-We use the LSTM instead of the GRU to compare the LSTM's performance improvement if any.
+As a baseline, We use the CNN Encoder to encode the image input of resized image (50x200) with 1 channel (greyscale). We use 3x3 convolutional filter followed by 2x2 max pooling layer. This previous block is repeated three times and followed fully connected layer.
+
+During decoding, We compute the embedding for formula tokens and concatenated with image encoded embedding. The concatenation of image and token embedding fed into LSTM units, followed by fully connected network. The activation is softmax. the LSTM instead of the GRU to compare the LSTM's performance improvement if any.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[scale=0.4]{fig_CNN_LSTM.png}
+    \caption{Baseline: CNN Encoder with LSTM Decoder.}
+    \label{fig:cnn_lstm}
+\end{figure}
 
 \subsection{LSTM with funetuning with pretrained Resnet50}
-We use the LSTM instead of the GRU to compare the LSTM's performance improvement if any.
+
+In this experiment, we use the pretained ResNet50 model as a encoder (98Mb disk size). However, ResNet50 expects the image with fixed size 254x254 and 3 channels. Our input images are grey scale. So, we transform the input image to the ResNet50 input using \verb|tf.keras.layers.Lambda(lambda x: tf.image.grayscale_to_rgb(x)|.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[scale=0.42]{fig_resnet_LSTM.png}
+    \caption{Pretrained ResNet50 Encoder with LSTM Decoder.}
+    \label{fig:resnet_lstm}
+\end{figure}
+
+\subsection{Re-weighted mis-predicted training example}
+ 
+  We're aiming to inspect the accuracy losses and ensure that mis-predicted examples are correctly identified with increased weighting. 
 
 \subsection{Attention Model}
-  [WIP] We're in the middle of using attention mechanism to experiment with attention mechanism for the model to learn complex dependencies.
+   \hlblue{Work in Progress by Akhil}. We're in the middle of using attention mechanism to experiment with attention mechanism for the model to learn complex dependencies. 
   
 \subsection{Beam Search Instead of Greedy Decoding}
-  [WIP] We're in the middle of using attention mechanism to experiment with attention mechanism for the model to learn complex dependencies. 
+  \hlblue{Work in Progress by JP} During inference time, we're using the greedy algorithm to pick the token with maximum logit score at every time. It terminates when the \verb|<END>| token is predicted or reaches the maximum sequence length. We will explore beam search in this experiment.
 
 \section{Experiments and Evaluation}
 
@@ -140,16 +167,12 @@ We will use the following metrics to evaluate the performance of the model for t
 \begin{itemize}
     \item Text Metrics: \textbf{BLEU Score} (\cite{papineni-etal-2002-bleu})
     \item Text Metrics: \textbf{Levenshtein Distance}
-    \item Image metrics: Compute the \textbf{accuracy} between images generated from original latex code and generated latex code. 
+    \item Image metrics: Compute the \textbf{accuracy} between images generated from original latex code and generated latex code. \hlblue{Work in-progress by Ben}
 \end{itemize}
 
 The experimentation will involve choosing different CNN layers (striding, pooling), learning rate, mini batch size. 
 
 \section{Remaining work for Final Project}
-
-\textbf{Re-weighted mis-predicted training example}: We're aiming to inspect the accuracy losses and ensure that mis-predicted examples are correctly identified with increased weighting. 
-
-\textbf{Image based evaluation metrics}: We have accuracy based metrics implemented, and edit distance based and BLEU Score based metrics implemented. We're planning to implement \textbf{Image Based} evaluation metrics as two different latex formulas can mean the same formula.
 
 \section{Contributions}
 
@@ -157,15 +180,13 @@ The experimentation will involve choosing different CNN layers (striding, poolin
 
 \textbf{Akhil}: Ideation, Setting AWS/GPU setup, Extending to full CNN and GRU as a baseline, Extending to attention/transformer architecture (work in progress).
 
-\textbf{Ben}: TODO
+\textbf{Ben}: \hlblue{TODO}
 
 
 \medskip
 
 \nocite{*}
 \bibliography{sample}
-\small
-
 
 \section{Appendix}
 
