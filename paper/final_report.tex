@@ -174,7 +174,7 @@ We use a single AWS G6.xlarge instance to train the models on 50,000 data points
 \begin{itemize}
   \item We measure the `sparse categorical loss` and accuracy which measures the loss/accuracy accross all tokens. 
   \item We measure the masked loss and accuracy to measure the accuracy for the non-padded tokens (we pad our tokens to length 151 and this will only check the loss/accuracy for the tokens that are part of the label sequence)
-  \item We measure the Levinshtein distance and BLEU-4 score for predicted sequences of a subset of the training set. These metrics were chosen in order to quantify closeness/correctness between sequences beyond a simple binary score that relies on exact matching.
+  \item We measure the Levenshtein distance and BLEU-4 score for predicted sequences of a subset of the training set. These metrics were chosen in order to quantify closeness/correctness between sequences beyond a simple binary score that relies on exact matching.
 \end{itemize}
 
 \subsection{CNN-RNN baseline}
