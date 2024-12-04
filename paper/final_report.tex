@@ -102,7 +102,7 @@ As a baseline, We use the CNN Encoder to encode the image input of resized image
 
 \begin{figure}[H]
     \centering
-    \includegraphics[scale=0.6]{cnn_architecture.png}
+    \includegraphics[scale=0.4]{cnn_architecture.png}
     \caption{Encoder architecture consists of 3 convolution-max pooling blocks (50,200) -> (25,100) -> (12,5) which is flattened and fed into Dense layer (256 units)  }	
     \label{fig:cnn_lstm}
 \end{figure}
@@ -134,7 +134,7 @@ Here we use the pretained ResNet50 model as a encoder (98Mb disk size). However,
 
 \begin{figure}[H]
     \centering
-    \includegraphics[scale=0.42]{fig_resnet_LSTM.png}
+    \includegraphics[scale=0.3]{fig_resnet_LSTM.png}
     \caption{Pretrained ResNet50 Encoder with LSTM Decoder.}
     \label{fig:resnet_lstm}
 \end{figure}
@@ -144,14 +144,14 @@ Here we use the pretained ResNet50 model as a encoder (98Mb disk size). However,
 \subsubsection{Vision Transformer Encoder}
 The vision encoder leverages patches of the image. We create patches of 10 X 10. Since our images are of size 50 X 200, we have a total of 100 patches per image.
 \begin{figure}[h]
-	\centering \includegraphics[scale=0.5]{image_to_patches.png}
+	\centering \includegraphics[scale=0.3]{image_to_patches.png}
 	\caption{Original latex image and the generated patches}
 \end{figure}
 
 In the vision transformer encoder, these patches are taken and embedded linearly and added to the positional embeddings. That is fed into a standard transformer layer. We use 8 transformer layers for our architecture that have 4 attention heads and 2 layer multi-layer perceptron with 2048 and 1024 units.
 
 \begin{figure}[H]
-	\centering \includegraphics[scale=0.75]{transformer_encoder.png}
+	\centering \includegraphics[scale=0.5]{transformer_encoder.png}
 	\caption{Transformer encoder architecture}
 \end{figure}
 
@@ -160,7 +160,7 @@ In the vision transformer encoder, these patches are taken and embedded linearly
 We use the standard transformer block for the decoder which uses cross-attention to find parts of the image to focus on and self-attention for the sequence generation. Our configuration uses 4 attention layers with 8 heads for both the self-attention and cross-attention components in each layer.
 
 \begin{figure}[H]
-	\centering \includegraphics[scale=0.7]{transformer_decoder.png}
+	\centering \includegraphics[scale=0.5]{transformer_decoder.png}
 	\caption{Transformer encoder architecture from \cite{transformer}}
 \end{figure}
 
@@ -174,6 +174,7 @@ We use a single AWS G6.xlarge instance to train the models on 50,000 data points
 \begin{itemize}
   \item We measure the `sparse categorical loss` and accuracy which measures the loss/accuracy accross all tokens. 
   \item We measure the masked loss and accuracy to measure the accuracy for the non-padded tokens (we pad our tokens to length 151 and this will only check the loss/accuracy for the tokens that are part of the label sequence)
+  \item We measure the Levinshtein distance and BLEU-4 score for predicted sequences of a subset of the training set. These metrics were chosen in order to quantify closeness/correctness between sequences beyond a simple binary score that relies on exact matching.
 \end{itemize}
 
 \subsection{CNN-RNN baseline}
