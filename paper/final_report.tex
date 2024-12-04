@@ -47,7 +47,7 @@ Category: Computer Vision}
 \maketitle
 
 \begin{abstract}
-Converting mathematical expressions into LaTeX is challenging. In this paper, we explore using newer transformer based architectures for addressing the problem of converting handwritten/digital mathematical expression images into equivalent LaTeX code. We use the current state of the art CNN encoder and RNN decoder as a baseline for our experiments. We also investigate improvements to CNN-RNN architecture by replacing the CNN encoder with the ResNet50 model. Our experiments show that transformer architectures achive a \~2.7\% higher overall accuracy compared to the CNN/RNN architectures with room to achieve even better results with appropriate fine-tuning of model parameters.
+Converting mathematical expressions into LaTeX is challenging. In this paper, we explore using newer transformer based architectures for addressing the problem of converting handwritten/digital mathematical expression images into equivalent LaTeX code. We use the current state of the art CNN encoder and RNN decoder as a baseline for our experiments. We also investigate improvements to CNN-RNN architecture by replacing the CNN encoder with the ResNet50 model. Our experiments show that transformer architectures achive a \~2.7\% higher overall accuracy compared to the baseline CNN/RNN architecture with room to achieve even better results with appropriate fine-tuning of model parameters.
 \end{abstract}
 
 \section{Github Link}
@@ -56,7 +56,7 @@ Converting mathematical expressions into LaTeX is challenging. In this paper, we
 
 \section{Introduction}	
 
-Converting handwritten mathematical expressions into digital formats is time consuming, specifically LaTeX code. Our goal is to train a ML model that is capable of encoding handwritten notes and converting to the source code seamlessly. The input to our algorithm is an image of a handwritten mathematical expression. The challenge of our project is to convert an image to a text LaTeX sequence which will require the use of both computer vision and NLP techniques. 
+Converting handwritten mathematical expressions into digital formats is time consuming, specifically LaTeX code. Our goal is to train a ML model that is capable of encoding handwritten notes and converting to the source code seamlessly. The input to our algorithm is an image of a handwritten mathematical expression and the output is a sequence of tokens representing a LaTeX sequence. The challenge of our project requires the use of both computer vision and NLP techniques. We utilize an encoder-decoder architecture to encode the input image and decode it into a sequence.
 
 % Explain the problem and why it is important. Discuss your motivation for pursuing this
 % problem. Give some background if necessary. Clearly state what the input and output
@@ -173,7 +173,7 @@ We use a single AWS G6.xlarge instance to train the models on 50,000 data points
 
 \begin{itemize}
   \item We measure the `sparse categorical loss` and accuracy which measures the loss/accuracy accross all tokens. 
-  \item We measure the masked loss and accuracy to measure the accuracy for the non-padded tokens (we pad our tokens to length 151 and this will only check the loss/accuracy for the tokens that are part of the label sequence)
+  \item We measure the masked loss and accuracy to measure the accuracy for the non-padded tokens (we pad our tokens to length 151 which is the max and this will only check the loss/accuracy for the tokens that are part of the label sequence)
   \item We measure the Levenshtein distance and BLEU-4 score for predicted sequences of a subset of the training set. These metrics were chosen in order to quantify closeness/correctness between sequences beyond a simple binary score that relies on exact matching.
 \end{itemize}
 
@@ -200,10 +200,10 @@ Transformer  & 0.5209 & 0.8738 & 1.4722 & 0.6417 \\
 \end{tabular}
 \end{center}
 
-We can see that the transformer architecture gets significantly lower loss and higher accuracy compared to the baseline CNN-RNN model.
+We can see that the transformer architecture gets significantly lower loss and Levenschtein score, and higher accuracy and BLEU score compared to the baseline CNN-RNN model and ResNet-RNN model.
 
 \section{Conclusion/Future Work}
-We can see that the transformer architecture outperformed the vanilla CNN-RNN architecture on all measured metrics. Given more time, we would have mainly focused on experimenting with various transformer architecture configurations (by changing number of layers, attention heads, patch size for the vision transformer encoder etc.)
+We can see that the transformer architecture outperformed the vanilla CNN-RNN architecture on all measured metrics. Given more time, we would have mainly focused on experimenting with various transformer architecture configurations (by changing number of layers, attention heads, patch size for the vision transformer encoder etc.). We also would have looked at training more complex models with more data. For this paper, we used 50,000 data points due to constraints on the AWS instances we could use.
 
 \section{Contributions}
 
