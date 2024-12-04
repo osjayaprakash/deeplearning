@@ -50,6 +50,10 @@ Category: Computer Vision}
 Converting mathematical expressions into LaTeX is challenging. In this paper, we explore using newer transformer based architectures for addressing the problem of converting handwritten/digital mathematical expression images into equivalent LaTeX code. We use the current state of the art CNN encoder and RNN decoder as a baseline for our experiments. We also investigate improvements to CNN-RNN architecture by replacing the CNN encoder with the ResNet50 model. Our experiments show that transformer architectures achive a \~2.7\% higher overall accuracy compared to the CNN/RNN architectures with room to achieve even better results with appropriate fine-tuning of model parameters.
 \end{abstract}
 
+\section{Github Link}
+
+\url{https://github.com/osjayaprakash/deeplearning/tree/main}
+
 \section{Introduction}	
 
 Converting handwritten mathematical expressions into digital formats is time consuming, specifically LaTeX code. Our goal is to train a ML model that is capable of encoding handwritten notes and converting to the source code seamlessly. The input to our algorithm is an image of a handwritten mathematical expression. The challenge of our project is to convert an image to a text LaTeX sequence which will require the use of both computer vision and NLP techniques. 
@@ -187,6 +191,8 @@ Both models had ~85\% accuracy with GRU being slightly worse off. Due to this, w
  Architecture & Loss & Accuracy & Masked Loss & Masked Accuracy \\ [0.5ex] 
  \hline\hline
  CNN-RNN (LSTM) & 0.6479 & 0.8470 & 1.6941 & 0.6008 \\ 
+ \hline
+ResNet-RNN  & 0.7811  & 0.8192 & 2.0793  & 0.5204 \\ 
  \hline
  Vision Transformer Encoder + Transformer Decoder  & 0.5209 & 0.8738 & 1.4722 & 0.6417 \\
  \hline
