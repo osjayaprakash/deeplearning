@@ -1,8 +1,8 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.26 (TeX Live 2024) (preloaded format=pdflatex 2024.7.27)  4 DEC 2024 19:47
+This is pdfTeX, Version 3.141592653-2.6-1.40.26 (TeX Live 2024) (preloaded format=pdflatex 2024.7.27)  4 DEC 2024 19:51
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
-**final_report.tex
+**final_report
 (./final_report.tex
 LaTeX2e <2023-11-01> patch level 1
 L3 programming layer <2024-02-20>
@@ -919,77 +919,37 @@ Package microtype Info: Loading generic protrusion settings for font family
 (microtype)             `cmtt' (encoding: T1).
 (microtype)             For optimal results, create family-specific settings.
 (microtype)             See the microtype manual for details.
-
-
-Package natbib Warning: Citation `schechter2017converting' on page 1 undefined 
-on input line 80.
-
-
-Package natbib Warning: Citation `genthial2016image' on page 1 undefined on inp
-ut line 80.
-
-
-Package natbib Warning: Citation `bian2022handwritten' on page 1 undefined on i
-nput line 80.
-
-[1
+ [1
 
 
 {/usr/local/texlive/2024/texmf-var/fonts/map/pdftex/updmap/pdftex.map}{/usr/loc
 al/texlive/2024/texmf-dist/fonts/enc/dvips/base/8r.enc}{/usr/local/texlive/2024
 /texmf-dist/fonts/enc/dvips/cm-super/cm-super-t1.enc} <./CS230.png>]
-
-Package natbib Warning: Citation `transformer' on page 2 undefined on input lin
-e 82.
-
-
-Package natbib Warning: Citation `visiontransformer' on page 2 undefined on inp
-ut line 82.
-
-
-Package natbib Warning: Citation `kanervisto_2016_56198' on page 2 undefined on
- input line 86.
-
-
-Package natbib Warning: Citation `gervais2024mathwritingdatasethandwrittenmathe
-matical' on page 2 undefined on input line 86.
-
-
-Package natbib Warning: Citation `kanervisto_2016_56198' on page 2 undefined on
- input line 86.
-
-
-Package natbib Warning: Citation `gervais2024mathwritingdatasethandwrittenmathe
-matical' on page 2 undefined on input line 86.
-
-<fig_latex_formula_length.png, id=92, 867.24pt x 505.89pt>
+<fig_latex_formula_length.png, id=111, 867.24pt x 505.89pt>
 File: fig_latex_formula_length.png Graphic file (type png)
 <use fig_latex_formula_length.png>
 Package pdftex.def Info: fig_latex_formula_length.png  used on input line 93.
 (pdftex.def)             Requested size: 346.88986pt x 202.3524pt.
-<cnn_architecture.png, id=93, 535.2497pt x 118.19156pt>
+<cnn_architecture.png, id=112, 535.2497pt x 118.19156pt>
 File: cnn_architecture.png Graphic file (type png)
 <use cnn_architecture.png>
 Package pdftex.def Info: cnn_architecture.png  used on input line 105.
 (pdftex.def)             Requested size: 214.09608pt x 47.27577pt.
 
-Overfull \hbox (20.57664pt too wide) in paragraph at lines 110--129
-[] 
- []
+Underfull \vbox (badness 10000) has occurred while \output is active []
 
-[2
+ [2
 pdfTeX warning (ext4): destination with the same identifier (name{figure.1}) ha
 s been already used, duplicate ignored
 <argument> ...shipout:D \box_use:N \l_shipout_box 
                                                   \__shipout_drop_firstpage_...
-l.129 
-      
-pdfTeX warning (ext4): destination with the same identifier (name{figure.2}) ha
-s been already used, duplicate ignored
-<argument> ...shipout:D \box_use:N \l_shipout_box 
-                                                  \__shipout_drop_firstpage_...
-l.129 
-       <./fig_latex_formula_length.png> <./cnn_architecture.png>]
+l.109 
+       <./fig_latex_formula_length.png>]
+Overfull \hbox (20.57664pt too wide) in paragraph at lines 110--129
+[] 
+ []
+
+
 Underfull \hbox (badness 1337) in paragraph at lines 132--133
 \T1/ptm/m/n/10 (+20) Here we use the pre-tained ResNet50 model as a en-coder (9
 8Mb disk size). How-ever,
@@ -1007,65 +967,72 @@ Underfull \hbox (badness 1762) in paragraph at lines 132--133
 o the ResNet50 in-put us-ing
  []
 
-<fig_resnet_LSTM.png, id=104, 819.06pt x 365.365pt>
+<fig_resnet_LSTM.png, id=127, 819.06pt x 365.365pt>
 File: fig_resnet_LSTM.png Graphic file (type png)
 <use fig_resnet_LSTM.png>
 Package pdftex.def Info: fig_resnet_LSTM.png  used on input line 137.
 (pdftex.def)             Requested size: 245.7199pt x 109.61034pt.
-<image_to_patches.png, id=105, 579.66562pt x 72.27pt>
+<image_to_patches.png, id=128, 579.66562pt x 72.27pt>
 File: image_to_patches.png Graphic file (type png)
 <use image_to_patches.png>
 Package pdftex.def Info: image_to_patches.png  used on input line 147.
 (pdftex.def)             Requested size: 173.90102pt x 21.68115pt.
-<transformer_encoder.png, id=106, 650.43pt x 165.61874pt>
+<transformer_encoder.png, id=129, 650.43pt x 165.61874pt>
 File: transformer_encoder.png Graphic file (type png)
 <use transformer_encoder.png>
 Package pdftex.def Info: transformer_encoder.png  used on input line 154.
 (pdftex.def)             Requested size: 325.2142pt x 82.80916pt.
-<transformer_decoder.png, id=107, 300.3722pt x 423.08063pt>
-File: transformer_decoder.png Graphic file (type png)
-<use transformer_decoder.png>
-Package pdftex.def Info: transformer_decoder.png  used on input line 163.
-(pdftex.def)             Requested size: 150.18571pt x 211.5398pt.
 
-Package natbib Warning: Citation `transformer' on page 3 undefined on input lin
-e 164.
-
-
-Underfull \vbox (badness 3547) has occurred while \output is active []
+Underfull \vbox (badness 10000) has occurred while \output is active []
 
  [3
+pdfTeX warning (ext4): destination with the same identifier (name{figure.2}) ha
+s been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.157 
+      
 pdfTeX warning (ext4): destination with the same identifier (name{figure.3}) ha
 s been already used, duplicate ignored
 <argument> ...shipout:D \box_use:N \l_shipout_box 
                                                   \__shipout_drop_firstpage_...
-l.165 \end{figure}
-                  
+l.157 
+      
 pdfTeX warning (ext4): destination with the same identifier (name{figure.4}) ha
 s been already used, duplicate ignored
 <argument> ...shipout:D \box_use:N \l_shipout_box 
                                                   \__shipout_drop_firstpage_...
-l.165 \end{figure}
-                  
+l.157 
+       <./cnn_architecture.png> <./fig_resnet_LSTM.png> <./image_to_patches.png
+>]
+<transformer_decoder.png, id=141, 300.3722pt x 423.08063pt>
+File: transformer_decoder.png Graphic file (type png)
+<use transformer_decoder.png>
+Package pdftex.def Info: transformer_decoder.png  used on input line 163.
+(pdftex.def)             Requested size: 150.18571pt x 211.5398pt.
+LaTeX Font Info:    Trying to load font information for TS1+ptm on input line 1
+77.
+ (/usr/local/texlive/2024/texmf-dist/tex/latex/psnfss/ts1ptm.fd
+File: ts1ptm.fd 2001/06/04 font definitions for TS1/ptm.
+) [4
 pdfTeX warning (ext4): destination with the same identifier (name{figure.5}) ha
 s been already used, duplicate ignored
 <argument> ...shipout:D \box_use:N \l_shipout_box 
                                                   \__shipout_drop_firstpage_...
-l.165 \end{figure}
-                   <./fig_resnet_LSTM.png> <./image_to_patches.png> <./transfor
-mer_encoder.png>]
-LaTeX Font Info:    Trying to load font information for TS1+ptm on input line 1
-77.
-
-(/usr/local/texlive/2024/texmf-dist/tex/latex/psnfss/ts1ptm.fd
-File: ts1ptm.fd 2001/06/04 font definitions for TS1/ptm.
-)
-<lstm_training.png, id=119, 414.79968pt x 326.72063pt>
+l.180 \end{itemize}
+                   
+pdfTeX warning (ext4): destination with the same identifier (name{figure.6}) ha
+s been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.180 \end{itemize}
+                    <./transformer_encoder.png> <./transformer_decoder.png>]
+<lstm_training.png, id=152, 414.79968pt x 326.72063pt>
 File: lstm_training.png Graphic file (type png)
 <use lstm_training.png>
 Package pdftex.def Info: lstm_training.png  used on input line 185.
 (pdftex.def)             Requested size: 186.65813pt x 147.02292pt.
-<gru_training.png, id=120, 410.2828pt x 325.96782pt>
+<gru_training.png, id=153, 410.2828pt x 325.96782pt>
 File: gru_training.png Graphic file (type png)
 <use gru_training.png>
 Package pdftex.def Info: gru_training.png  used on input line 186.
@@ -1076,40 +1043,24 @@ Underfull \hbox (badness 10000) in paragraph at lines 183--187
  []
 
 
-Underfull \vbox (badness 1033) has occurred while \output is active []
-
- [4
-pdfTeX warning (ext4): destination with the same identifier (name{figure.6}) ha
-s been already used, duplicate ignored
-<argument> ...shipout:D \box_use:N \l_shipout_box 
-                                                  \__shipout_drop_firstpage_...
-l.188 B
-       oth models had ~85\% accuracy with GRU being slightly worse off. Due ...
- <./transformer_decoder.png>]
 Overfull \hbox (38.7028pt too wide) in paragraph at lines 192--203
  [] 
  []
 
-No file final_report.bbl.
-<fig_vocabs_frequency_1.png, id=127, 867.24pt x 578.16pt>
+(./final_report.bbl [5 <./lstm_training.png> <./gru_training.png>])
+<fig_vocabs_frequency_1.png, id=174, 867.24pt x 578.16pt>
 File: fig_vocabs_frequency_1.png Graphic file (type png)
 <use fig_vocabs_frequency_1.png>
 Package pdftex.def Info: fig_vocabs_frequency_1.png  used on input line 227.
 (pdftex.def)             Requested size: 346.88986pt x 231.2599pt.
-
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
- [5 <./lstm_training.png> <./gru_training.png>]
-<fig_vocabs_frequency_2.png, id=134, 867.24pt x 578.16pt>
+ [6]
+<fig_vocabs_frequency_2.png, id=198, 867.24pt x 578.16pt>
 File: fig_vocabs_frequency_2.png Graphic file (type png)
 <use fig_vocabs_frequency_2.png>
 Package pdftex.def Info: fig_vocabs_frequency_2.png  used on input line 234.
 (pdftex.def)             Requested size: 346.88986pt x 231.2599pt.
 
-
-Package natbib Warning: There were undefined citations.
-
-[6
+[7
 pdfTeX warning (ext4): destination with the same identifier (name{figure.7}) ha
 s been already used, duplicate ignored
 <argument> ...shipout:D \box_use:N \l_shipout_box 
@@ -1127,25 +1078,30 @@ ng>] (./final_report.aux)
 LaTeX2e <2023-11-01> patch level 1
 L3 programming layer <2024-02-20>
  ***********
+
+
+LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
+
 Package rerunfilecheck Info: File `final_report.out' has not changed.
 (rerunfilecheck)             Checksum: 20C29A45C3573DD907E836FFF77EDC64;2635.
  ) 
 Here is how much of TeX's memory you used:
- 26334 strings out of 474116
- 505992 string characters out of 5743682
- 1937187 words of memory out of 5000000
- 48122 multiletter control sequences out of 15000+600000
- 582302 words of font info for 133 fonts, out of 8000000 for 9000
+ 26439 strings out of 474116
+ 508220 string characters out of 5743682
+ 1942187 words of memory out of 5000000
+ 48179 multiletter control sequences out of 15000+600000
+ 586681 words of font info for 151 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 84i,8n,93p,1009b,663s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 84i,8n,93p,1005b,663s stack positions out of 10000i,1000n,20000p,200000b,200000s
 </usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb
 ></usr/local/texlive/2024/texmf-dist/fonts/type1/public/cm-super/sftt1000.pfb><
 /usr/local/texlive/2024/texmf-dist/fonts/type1/urw/times/utmb8a.pfb></usr/local
-/texlive/2024/texmf-dist/fonts/type1/urw/times/utmr8a.pfb>
-Output written on final_report.pdf (6 pages, 459350 bytes).
+/texlive/2024/texmf-dist/fonts/type1/urw/times/utmr8a.pfb></usr/local/texlive/2
+024/texmf-dist/fonts/type1/urw/times/utmri8a.pfb>
+Output written on final_report.pdf (7 pages, 479060 bytes).
 PDF statistics:
- 171 PDF objects out of 1000 (max. 8388607)
- 131 compressed objects within 2 object streams
- 32 named destinations out of 1000 (max. 500000)
- 28876 words of extra memory for PDF output out of 29859 (max. 10000000)
+ 246 PDF objects out of 1000 (max. 8388607)
+ 202 compressed objects within 3 object streams
+ 50 named destinations out of 1000 (max. 500000)
+ 32972 words of extra memory for PDF output out of 35830 (max. 10000000)
 
