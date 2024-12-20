@@ -47,7 +47,7 @@ Category: Computer Vision}
 \maketitle
 
 \begin{abstract}
-Converting mathematical expressions into LaTeX is challenging. In this paper, we explore using newer transformer based architectures for addressing the problem of converting handwritten/digital mathematical expression images into equivalent LaTeX code. We use the current state of the art CNN encoder and RNN decoder as a baseline for our experiments. We also investigate improvements to CNN-RNN architecture by replacing the CNN encoder with the ResNet50 model. Our experiments show that transformer architectures achive a \~2.7\% higher overall accuracy compared to the CNN/RNN architectures with room to achieve even better results with appropriate fine-tuning of model parameters.
+Converting mathematical expressions into LaTeX is challenging. In this paper, we explore using newer transformer based architectures for addressing the problem of converting handwritten/digital mathematical expression images into equivalent LaTeX code. We use the current state of the art CNN encoder and RNN decoder as a baseline for our experiments. We also investigate improvements to CNN-RNN architecture by replacing the CNN encoder with the ResNet50 model. Our experiments show that transformer architectures achieve a higher overall accuracy and BLEU scores along with lower Levenschtein scores compared to the baseline CNN/RNN architecture with room to achieve even better results with appropriate fine-tuning of model parameters.
 \end{abstract}
 
 \section{Github Link}
@@ -56,7 +56,7 @@ Converting mathematical expressions into LaTeX is challenging. In this paper, we
 
 \section{Introduction}	
 
-Converting handwritten mathematical expressions into digital formats is time consuming, specifically LaTeX code. Our goal is to train a ML model that is capable of encoding handwritten notes and converting to the source code seamlessly. The input to our algorithm is an image of a handwritten mathematical expression. The challenge of our project is to convert an image to a text LaTeX sequence which will require the use of both computer vision and NLP techniques. 
+Converting handwritten mathematical expressions into digital formats is time consuming, specifically LaTeX code. Our goal is to train a ML model that is capable of encoding handwritten notes and converting to the source code seamlessly. The input to our algorithm is an image of a handwritten mathematical expression and the output is a sequence of tokens representing a LaTeX sequence. The challenge of our project requires the use of both computer vision and NLP techniques. We utilize an encoder-decoder architecture to encode the input image and decode it into a sequence.
 
 % Explain the problem and why it is important. Discuss your motivation for pursuing this
 % problem. Give some background if necessary. Clearly state what the input and output
@@ -102,7 +102,7 @@ As a baseline, We use the CNN Encoder to encode the image input of resized image
 
 \begin{figure}[H]
     \centering
-    \includegraphics[scale=0.6]{cnn_architecture.png}
+    \includegraphics[scale=0.4]{cnn_architecture.png}
     \caption{Encoder architecture consists of 3 convolution-max pooling blocks (50,200) -> (25,100) -> (12,5) which is flattened and fed into Dense layer (256 units)  }	
     \label{fig:cnn_lstm}
 \end{figure}
@@ -134,7 +134,7 @@ Here we use the pretained ResNet50 model as a encoder (98Mb disk size). However,
 
 \begin{figure}[H]
     \centering
-    \includegraphics[scale=0.42]{fig_resnet_LSTM.png}
+    \includegraphics[scale=0.3]{fig_resnet_LSTM.png}
     \caption{Pretrained ResNet50 Encoder with LSTM Decoder.}
     \label{fig:resnet_lstm}
 \end{figure}
@@ -144,14 +144,14 @@ Here we use the pretained ResNet50 model as a encoder (98Mb disk size). However,
 \subsubsection{Vision Transformer Encoder}
 The vision encoder leverages patches of the image. We create patches of 10 X 10. Since our images are of size 50 X 200, we have a total of 100 patches per image.
 \begin{figure}[h]
-	\centering \includegraphics[scale=0.5]{image_to_patches.png}
+	\centering \includegraphics[scale=0.3]{image_to_patches.png}
 	\caption{Original latex image and the generated patches}
 \end{figure}
 
 In the vision transformer encoder, these patches are taken and embedded linearly and added to the positional embeddings. That is fed into a standard transformer layer. We use 8 transformer layers for our architecture that have 4 attention heads and 2 layer multi-layer perceptron with 2048 and 1024 units.
 
 \begin{figure}[H]
-	\centering \includegraphics[scale=0.75]{transformer_encoder.png}
+	\centering \includegraphics[scale=0.5]{transformer_encoder.png}
 	\caption{Transformer encoder architecture}
 \end{figure}
 
@@ -160,24 +160,27 @@ In the vision transformer encoder, these patches are taken and embedded linearly
 We use the standard transformer block for the decoder which uses cross-attention to find parts of the image to focus on and self-attention for the sequence generation. Our configuration uses 4 attention layers with 8 heads for both the self-attention and cross-attention components in each layer.
 
 \begin{figure}[H]
-	\centering \includegraphics[scale=0.7]{transformer_decoder.png}
+	\centering \includegraphics[scale=0.5]{transformer_decoder.png}
 	\caption{Transformer encoder architecture from \cite{transformer}}
 \end{figure}
 
 
 \section{Experiments}
 
-\subsection{Setup/Metrics}
+\subsection{Setup/Hyperparameters/Metrics}
 
-We use a single AWS G6.xlarge instance to train the models on 50,000 data points. The training time varies between  1 hr 30 mins and 2 hrs. We use early stopping with a patience of 10. We compute the following metrics to compare the baseline and other methods:
+We use a single AWS G6.xlarge instance to train the models on 50,000 data points. The training time varies between  1 hr 30 mins and 2 hrs. We use early stopping with a patience of 10. We had a batch size of 128 for the CNN-RNN and ResNet-RNN, and a batch size of 64 for the transformer architecture which was primarily motivated by GPU memory constraints for the AWS instance. We used the default learning rate of 0.001 for the CNN-RNN and ResNet-RNN with the Adam optimizer, and a learning rate that decayed from 1e-4 to 1e-6 for the transformer architecture with the AdamW optimizer based on experimentation with different learning rates.
+
+We compute the following metrics to compare the baseline and other methods:
 
 \begin{itemize}
   \item We measure the `sparse categorical loss` and accuracy which measures the loss/accuracy accross all tokens. 
-  \item We measure the masked loss and accuracy to measure the accuracy for the non-padded tokens (we pad our tokens to length 151 and this will only check the loss/accuracy for the tokens that are part of the label sequence)
+  \item We measure the masked loss and accuracy to measure the accuracy for the non-padded tokens (we pad our tokens to length 151 which is the max and this will only check the loss/accuracy for the tokens that are part of the label sequence)
+  \item We measure the Levenshtein distance and BLEU-4 score for predicted sequences of a subset of the training set. These metrics were chosen in order to quantify closeness/correctness between sequences beyond a simple binary score that relies on exact matching.
 \end{itemize}
 
 \subsection{CNN-RNN baseline}
-We explored using both LSTM/GRU for the decoder and the difference between the two were negligible. Here are the training curves with  CNN - LSTM/GRU architectures:
+We explored using both LSTM/GRU for the decoder and the difference between the two were negligible. Here are the training curves with CNN - LSTM/GRU architectures:
 \newline \newline
  \includegraphics[scale=0.45]{lstm_training.png}
  \includegraphics[scale=0.45]{gru_training.png}
@@ -186,23 +189,23 @@ Both models had ~85\% accuracy with GRU being slightly worse off. Due to this, w
 
 \subsection{Results}
 \begin{center}
-\begin{tabular}{||c | c | c | c | c||} 
+\begin{tabular}{||c | c | c | c | c | c | c ||} 
  \hline
- Architecture & Loss & Accuracy & Masked Loss & Masked Accuracy \\ [0.5ex] 
+ Architecture & Loss & Accuracy & Masked Loss & Masked Accuracy & BLEU & Levenshtein \\ [0.5ex] 
  \hline\hline
- CNN-RNN (LSTM) & 0.6479 & 0.8470 & 1.6941 & 0.6008 \\ 
+ CNN-RNN (LSTM) & 0.6479 & 0.8470 & 1.6941 & 0.6008 & 0.4290 &  0.4016 \\ 
  \hline
-ResNet-RNN  & 0.7811  & 0.8192 & 2.0793  & 0.5204 \\ 
+ResNet-RNN  & 0.7811  & 0.8192 & 2.0793  & 0.5204 & 0.3723  &  0.4354\\ 
  \hline
- Vision Transformer Encoder + Transformer Decoder  & 0.5209 & 0.8738 & 1.4722 & 0.6417 \\
+Transformer  & 0.5209 & 0.8738 & 1.4722 & 0.6417 & 0.5575 & 0.3546\\
  \hline
 \end{tabular}
 \end{center}
 
-We can see that the transformer architecture gets significantly lower loss and higher accuracy compared to the baseline CNN-RNN model.
+We can see that the transformer architecture gets significantly lower loss and Levenshtein score, and higher accuracy and BLEU score compared to the baseline CNN-RNN model and ResNet-RNN model.
 
 \section{Conclusion/Future Work}
-We can see that the transformer architecture outperformed the vanilla CNN-RNN architecture on all measured metrics. Given more time, we would have mainly focused on experimenting with various transformer architecture configurations (by changing number of layers, attention heads, patch size for the vision transformer encoder etc.)
+We can see that overall the transformer architecture outperformed the vanilla CNN-RNN architecture on all measured metrics. We surmise that this is due to the combination of the algorithm utilizing positional embeddings along with attention mechanisms for both the encoder and decoder. Given more time, we would have mainly focused on experimenting with various transformer architecture configurations (by changing number of layers, attention heads, patch size for the vision transformer encoder etc.). We also would have looked at training more complex models with more data. For this paper, we used 50,000 data points with appropriate model sizes due to GPU memory constraints on the AWS instances we could use.
 
 \section{Contributions}
 
@@ -210,12 +213,12 @@ We can see that the transformer architecture outperformed the vanilla CNN-RNN ar
 
 \textbf{Akhil}: Ideation, AWS/GPU setup, Extending to CNN + GRU as a baseline, vision transformer encoder + transformer decoder model, masked loss and accuracy.
 
-\textbf{Ben}: \hlblue{TODO}
+\textbf{Ben}: Looked into potential final accuracy metrics, Implementing the Levenshtein and BLEU-4 metrics specific to models based on  prediction outputs.
 
 \medskip
 
 \nocite{*}
-\bibliography{sample}
+\bibliography{final_report}
 
 \section{Appendix}
 

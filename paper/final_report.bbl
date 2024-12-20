@@ -1,0 +1,117 @@
+\begin{thebibliography}{16}
+\providecommand{\natexlab}[1]{#1}
+\providecommand{\url}[1]{\texttt{#1}}
+\expandafter\ifx\csname urlstyle\endcsname\relax
+  \providecommand{\doi}[1]{doi: #1}\else
+  \providecommand{\doi}{doi: \begingroup \urlstyle{rm}\Url}\fi
+
+\bibitem[Schechter et~al.(2017)Schechter, Borus, and
+  Bakst]{schechter2017converting}
+Amit Schechter, Norah Borus, and William Bakst.
+\newblock Converting handwritten mathematical expressions into latex, 2017.
+\newblock URL
+  \url{https://cs229.stanford.edu/proj2017/final-reports/5241761.pdf}.
+
+\bibitem[Genthial and Sauvestre(2017{\natexlab{a}})]{genthial2016image}
+Guillaume Genthial and Romain Sauvestre.
+\newblock Image to latex, 2017{\natexlab{a}}.
+\newblock URL \url{https://cs231n.stanford.edu/reports/2017/pdfs/815.pdf}.
+
+\bibitem[Bian et~al.(2022)Bian, Qin, Xin, Li, Su, and
+  Wang]{bian2022handwritten}
+Xiaohang Bian, Bo~Qin, Xiaozhe Xin, Jianwu Li, Xuefeng Su, and Yanfeng Wang.
+\newblock Handwritten mathematical expression recognition via attention
+  aggregation based bi-directional mutual learning.
+\newblock In \emph{Proceedings of the AAAI conference on artificial
+  intelligence}, volume~36, pages 113--121, 2022.
+
+\bibitem[Vaswani et~al.(2023)Vaswani, Shazeer, Parmar, Uszkoreit, Jones, Gomez,
+  Kaiser, and Polosukhin]{transformer}
+Ashish Vaswani, Noam Shazeer, Niki Parmar, Jakob Uszkoreit, Llion Jones,
+  Aidan~N. Gomez, Lukasz Kaiser, and Illia Polosukhin.
+\newblock Attention is all you need, 2023.
+\newblock URL \url{https://arxiv.org/abs/1706.03762}.
+
+\bibitem[Dosovitskiy et~al.(2021)Dosovitskiy, Beyer, Kolesnikov, Weissenborn,
+  Zhai, Unterthiner, Dehghani, Minderer, Heigold, Gelly, Uszkoreit, and
+  Houlsby]{visiontransformer}
+Alexey Dosovitskiy, Lucas Beyer, Alexander Kolesnikov, Dirk Weissenborn,
+  Xiaohua Zhai, Thomas Unterthiner, Mostafa Dehghani, Matthias Minderer, Georg
+  Heigold, Sylvain Gelly, Jakob Uszkoreit, and Neil Houlsby.
+\newblock An image is worth 16x16 words: Transformers for image recognition at
+  scale, 2021.
+\newblock URL \url{https://arxiv.org/abs/2010.11929}.
+
+\bibitem[Kanervisto(2016)]{kanervisto_2016_56198}
+Anssi Kanervisto.
+\newblock im2latex-100k , arxiv:1609.04938, July 2016.
+\newblock URL \url{https://doi.org/10.5281/zenodo.56198}.
+
+\bibitem[Gervais et~al.(2024)Gervais, Fadeeva, and
+  Maksai]{gervais2024mathwritingdatasethandwrittenmathematical}
+Philippe Gervais, Asya Fadeeva, and Andrii Maksai.
+\newblock Mathwriting: A dataset for handwritten mathematical expression
+  recognition, 2024.
+\newblock URL \url{https://arxiv.org/abs/2404.10690}.
+
+\bibitem[Deng et~al.(2016)Deng, Kanervisto, and Rush]{DengKR16}
+Yuntian Deng, Anssi Kanervisto, and Alexander~M. Rush.
+\newblock What you get is what you see: {A} visual markup decompiler.
+\newblock \emph{CoRR}, abs/1609.04938, 2016.
+\newblock URL \url{http://arxiv.org/abs/1609.04938}.
+
+\bibitem[Wang and Liu(2019)]{abs-1908-11415}
+Zelun Wang and Jyh{-}Charn Liu.
+\newblock Translating mathematical formula images to latex sequences using deep
+  neural networks with sequence-level training.
+\newblock \emph{CoRR}, abs/1908.11415, 2019.
+\newblock URL \url{http://arxiv.org/abs/1908.11415}.
+
+\bibitem[Wang and Liu(2018)]{cs230:1}
+Zelun Wang and Jyh{-}Charn Liu.
+\newblock Image to latex: A neural network approach, 2018.
+\newblock URL
+  \url{https://cs230.stanford.edu/projects_spring_2018/reports/8287695.pdf}.
+
+\bibitem[Genthial and Sauvestre(2017{\natexlab{b}})]{cs230:2}
+Guillaume Genthial and Romain Sauvestre.
+\newblock Image to latex, 2017{\natexlab{b}}.
+\newblock URL \url{https://cs231n.stanford.edu/reports/2017/pdfs/815.pdf}.
+
+\bibitem[Wang and Shan(2020)]{DBLP:journals/corr/abs-2003-00817}
+Hongyu Wang and Guangcun Shan.
+\newblock Recognizing handwritten mathematical expressions as latex sequences
+  using a multiscale robust neural network.
+\newblock \emph{CoRR}, abs/2003.00817, 2020.
+\newblock URL \url{https://arxiv.org/abs/2003.00817}.
+
+\bibitem[Gurgurov and
+  Morshnev(2024)]{gurgurov2024imagetolatexconvertermathematicalformulas}
+Daniil Gurgurov and Aleksey Morshnev.
+\newblock Image-to-latex converter for mathematical formulas and text, 2024.
+\newblock URL \url{https://arxiv.org/abs/2408.04015}.
+
+\bibitem[O'Shea and Nash(2015)]{OSheaN15}
+Keiron O'Shea and Ryan Nash.
+\newblock An introduction to convolutional neural networks.
+\newblock \emph{CoRR}, abs/1511.08458, 2015.
+\newblock URL \url{http://arxiv.org/abs/1511.08458}.
+
+\bibitem[Hochreiter and Schmidhuber(1997)]{6795963}
+Sepp Hochreiter and Jürgen Schmidhuber.
+\newblock Long short-term memory.
+\newblock \emph{Neural Computation}, 9\penalty0 (8):\penalty0 1735--1780, 1997.
+\newblock \doi{10.1162/neco.1997.9.8.1735}.
+
+\bibitem[Papineni et~al.(2002)Papineni, Roukos, Ward, and
+  Zhu]{papineni-etal-2002-bleu}
+Kishore Papineni, Salim Roukos, Todd Ward, and Wei-Jing Zhu.
+\newblock {B}leu: a method for automatic evaluation of machine translation.
+\newblock In Pierre Isabelle, Eugene Charniak, and Dekang Lin, editors,
+  \emph{Proceedings of the 40th Annual Meeting of the Association for
+  Computational Linguistics}, pages 311--318, Philadelphia, Pennsylvania, USA,
+  July 2002. Association for Computational Linguistics.
+\newblock \doi{10.3115/1073083.1073135}.
+\newblock URL \url{https://aclanthology.org/P02-1040}.
+
+\end{thebibliography}
